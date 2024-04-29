@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 //@Service... no using service since spring auto configures the singleton in the app context
+
+//Singleton
 @Slf4j
 public class ConfigurationManager {
     private static ConfigurationManager instance;

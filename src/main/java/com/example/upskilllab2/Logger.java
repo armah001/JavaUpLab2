@@ -2,6 +2,7 @@ package com.example.upskilllab2;
 
 import lombok.Data;
 
+//Singleton
 @Data
 public class Logger
 {
