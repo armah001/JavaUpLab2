@@ -1,26 +1,21 @@
 package com.example.upskilllab2;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-@Service
+//@Service... no using service since spring auto configures the singleton in the app context
 @Slf4j
 public class ConfigurationManager {
     private static ConfigurationManager instance;
-    private Properties properties;
+
+    @Value("${database.url}")
+    private String databaseUrl;
 
     private ConfigurationManager() {
-        properties = new Properties();
-        try {
-            // Load configuration from file
-            properties.load(new FileInputStream("config.properties"));
-        } catch (IOException e) {
-            log.info("Error loading configuration file");
-            e.printStackTrace();
-        }
     }
 
     public static synchronized ConfigurationManager getInstance() {
@@ -30,7 +25,7 @@ public class ConfigurationManager {
         return instance;
     }
 
-    public String getProperty(String key) {
-        return properties.getProperty(key);
+    public String getDatabaseUrl() {
+        return databaseUrl;
     }
 }

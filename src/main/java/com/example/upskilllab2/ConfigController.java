@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConfigController {
     private ConfigurationManager configManager;
 
-    public ConfigController(ConfigurationManager configManager) {
-        this.configManager = configManager;
+    public ConfigController() {
+        this.configManager = ConfigurationManager.getInstance();
     }
 
     @GetMapping("/config")
-    public String getConfigValue(@RequestParam String key) {
-        String value = configManager.getProperty(key);
-        return "Value for key '" + key + "': " + value;
+    public String getConfigValue() {
+        String value = configManager.getDatabaseUrl();
+        return "Value for key : " + value;
     }
 }
 
